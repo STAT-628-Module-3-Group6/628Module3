@@ -1,0 +1,383 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 32.0 (Build date: August 29, 2019)        
+ Compiled with NAG Fortran 6.2.0 on macOS Mojave 10.14.6     
+ Copyright (c) 1997-2019 Wei-Yin Loh. All rights reserved.
+ This software is based upon work supported by the U.S. Army Research Office,
+ the National Science Foundation and the National Institutes of Health.
+  
+ This job was started on 11/11/19 at 19:24
+  
+ Classification tree
+ No pruning
+ Data description file: desc_atr.txt
+ Training sample file: attributes.csv
+ Missing value code: NA
+ Records in data file start on line 2
+ Dependent variable is stars
+ Number of records in data file: 4278
+ Length of longest entry in data file: 22
+ Missing values found among categorical variables
+ Separate categories will be created for missing categorical variables
+ Number of classes: 9
+ Training sample class proportions of D variable stars:
+ Class  #Cases     Proportion
+ 1.0        26     0.00607761
+ 1.5        45     0.01051893
+ 2.0       212     0.04955587
+ 2.5       518     0.12108462
+ 3.0      1078     0.25198691
+ 3.5      1286     0.30060776
+ 4.0       832     0.19448340
+ 4.5       250     0.05843852
+ 5.0        31     0.00724638
+  
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+       4278          0          0       13        0        0        0
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0       60        0
+ No. cases used for training: 4278
+  
+ Importance scoring of variables
+ Univariate split highest priority
+ Interaction splits 2nd priority; no linear splits
+ Fraction of noise variables erroneously identified as important = .01000
+ Simple node models
+ Equal priors
+ Unit misclassification costs
+ Split values for N and S variables based on exhaustive search
+ Maximum number of split levels: 3
+ Minimum node sample size: 21
+  
+ Structure of final tree. Each terminal node is marked with a T.
+  
+ Node cost is node misclassification cost divided by number of training cases
+        Node    Total    Train    Predicted        Node    Split          Interacting
+       label    cases    cases    class            cost    variables      variable
+           1     4278     4278    1.0            8.889E-01 casual 
+           2     1806     1806    3.5            7.895E-01 DriveThru 
+           4     1759     1759    3.5            7.850E-01 WheelchairAccessible 
+           8T     229      229    4.5            5.680E-01 BusinessAcceptsCreditCards 
+           9T    1530     1530    3.5            7.743E-01 NoiseLevel 
+           5       47       47    2.0            6.367E-01 lot 
+          10T      21       21    2.0            4.843E-01 - 
+          11T      26       26    4.5            7.342E-01 - 
+           3     2472     2472    1.0            8.479E-01 DogsAllowed 
+           6     2383     2383    1.0            8.515E-01 RestaurantsGoodForGroups 
+          12T     345      345    1.0            7.325E-01 Caters 
+          13T    2038     2038    1.5            8.419E-01 lunch 
+           7T      89       89    5.0            5.504E-01 - 
+  
+ Number of terminal nodes of final tree: 7
+ Total number of nodes of final tree: 13
+ Second best split variable (based on curvature test) at root node is dinner
+  
+ Classification tree:
+ At splits on categorical variables, values not in training data go to the right
+  
+ Node 1: casual = "True"
+   Node 2: DriveThru = "NA"
+     Node 4: WheelchairAccessible = "True"
+       Node 8: 4.5
+     Node 4: WheelchairAccessible /= "True"
+       Node 9: 3.5
+   Node 2: DriveThru /= "NA"
+     Node 5: lot = "False"
+       Node 10: 2.0
+     Node 5: lot /= "False"
+       Node 11: 4.5
+ Node 1: casual /= "True"
+   Node 3: DogsAllowed = "NA"
+     Node 6: RestaurantsGoodForGroups = "NA"
+       Node 12: 1.0
+     Node 6: RestaurantsGoodForGroups /= "NA"
+       Node 13: 1.5
+   Node 3: DogsAllowed /= "NA"
+     Node 7: 5.0
+ 
+ ***************************************************************
+ 
+  
+Node 1: Intermediate node
+ A case goes into Node 2 if casual = "True"
+ casual mode = "True"
+ Class      Number   Posterior
+ 1.0            26     0.11111
+ 1.5            45     0.11111
+ 2.0           212     0.11111
+ 2.5           518     0.11111
+ 3.0          1078     0.11111
+ 3.5          1286     0.11111
+ 4.0           832     0.11111
+ 4.5           250     0.11111
+ 5.0            31     0.11111
+ Number of training cases misclassified = 4252
+ Predicted class is 1.0
+ ----------------------------
+Node 2: Intermediate node
+ A case goes into Node 4 if DriveThru = "NA"
+ DriveThru mode = "NA"
+ Class      Number   Posterior
+ 1.0             0     0.00000
+ 1.5             4     0.03668
+ 2.0            33     0.06423
+ 2.5           148     0.11790
+ 3.0           443     0.16957
+ 3.5           656     0.21049
+ 4.0           419     0.20781
+ 4.5           101     0.16671
+ 5.0             2     0.02662
+ Number of training cases misclassified = 1150
+ Predicted class is 3.5
+ ----------------------------
+Node 4: Intermediate node
+ A case goes into Node 8 if WheelchairAccessible = "True"
+ WheelchairAccessible mode = "NA"
+ Class      Number   Posterior
+ 1.0             0     0.00000
+ 1.5             4     0.03811
+ 2.0            26     0.05258
+ 2.5           139     0.11504
+ 3.0           431     0.17141
+ 3.5           645     0.21502
+ 4.0           415     0.21384
+ 4.5            97     0.16634
+ 5.0             2     0.02766
+ Number of training cases misclassified = 1114
+ Predicted class is 3.5
+ ----------------------------
+Node 8: Terminal node
+ Class      Number   Posterior
+ 1.0             0     0.00000
+ 1.5             0     0.00000
+ 2.0             1     0.01340
+ 2.5             8     0.04389
+ 3.0            34     0.08963
+ 3.5            70     0.15469
+ 4.0            78     0.26642
+ 4.5            38     0.43196
+ 5.0             0     0.00000
+ Number of training cases misclassified = 191
+ Predicted class is 4.5
+ ----------------------------
+Node 9: Terminal node
+ Class      Number   Posterior
+ 1.0             0     0.00000
+ 1.5             4     0.04488
+ 2.0            25     0.05954
+ 2.5           131     0.12768
+ 3.0           397     0.18593
+ 3.5           575     0.22574
+ 4.0           337     0.20450
+ 4.5            59     0.11915
+ 5.0             2     0.03257
+ Number of training cases misclassified = 955
+ Predicted class is 3.5
+ ----------------------------
+Node 5: Intermediate node
+ A case goes into Node 10 if lot = "False"
+ lot mode = "True"
+ Class      Number   Posterior
+ 1.0             0     0.00000
+ 1.5             0     0.00000
+ 2.0             7     0.36330
+ 2.5             9     0.19117
+ 3.0            12     0.12248
+ 3.5            11     0.09411
+ 4.0             4     0.05290
+ 4.5             4     0.17604
+ 5.0             0     0.00000
+ Number of training cases misclassified = 40
+ Predicted class is 2.0
+ ----------------------------
+Node 10: Terminal node
+ Class      Number   Posterior
+ 1.0             0     0.00000
+ 1.5             0     0.00000
+ 2.0             5     0.51570
+ 2.5             4     0.16885
+ 3.0             4     0.08113
+ 3.5             4     0.06801
+ 4.0             3     0.07884
+ 4.5             1     0.08746
+ 5.0             0     0.00000
+ Number of training cases misclassified = 16
+ Predicted class is 2.0
+ ----------------------------
+Node 11: Terminal node
+ Class      Number   Posterior
+ 1.0             0     0.00000
+ 1.5             0     0.00000
+ 2.0             2     0.20893
+ 2.5             5     0.21377
+ 3.0             8     0.16436
+ 3.5             7     0.12055
+ 4.0             1     0.02662
+ 4.5             3     0.26576
+ 5.0             0     0.00000
+ Number of training cases misclassified = 23
+ Predicted class is 4.5
+ ----------------------------
+Node 3: Intermediate node
+ A case goes into Node 6 if DogsAllowed = "NA"
+ DogsAllowed mode = "NA"
+ Class      Number   Posterior
+ 1.0            26     0.15206
+ 1.5            41     0.13854
+ 2.0           179     0.12839
+ 2.5           370     0.10861
+ 3.0           635     0.08957
+ 3.5           630     0.07449
+ 4.0           413     0.07548
+ 4.5           149     0.09062
+ 5.0            29     0.14225
+ Number of training cases misclassified = 2446
+ Predicted class is 1.0
+ ----------------------------
+Node 6: Intermediate node
+ A case goes into Node 12 if RestaurantsGoodForGroups = "NA"
+ RestaurantsGoodForGroups mode = "True"
+ Class      Number   Posterior
+ 1.0            24     0.14846
+ 1.5            41     0.14653
+ 2.0           176     0.13352
+ 2.5           361     0.11208
+ 3.0           623     0.09295
+ 3.5           603     0.07541
+ 4.0           389     0.07519
+ 4.5           142     0.09135
+ 5.0            24     0.12451
+ Number of training cases misclassified = 2359
+ Predicted class is 1.0
+ ----------------------------
+Node 12: Terminal node
+ Class      Number   Posterior
+ 1.0            10     0.26749
+ 1.5             7     0.10818
+ 2.0            40     0.13122
+ 2.5            60     0.08056
+ 3.0            72     0.04645
+ 3.5            71     0.03840
+ 4.0            44     0.03678
+ 4.5            32     0.08902
+ 5.0             9     0.20191
+ Number of training cases misclassified = 335
+ Predicted class is 1.0
+ ----------------------------
+Node 13: Terminal node
+ Class      Number   Posterior
+ 1.0            14     0.11265
+ 1.5            34     0.15807
+ 2.0           136     0.13421
+ 2.5           301     0.12157
+ 3.0           551     0.10693
+ 3.5           532     0.08655
+ 4.0           345     0.08675
+ 4.5           110     0.09205
+ 5.0            15     0.10123
+ Number of training cases misclassified = 2004
+ Predicted class is 1.5
+ ----------------------------
+Node 7: Terminal node
+ Class      Number   Posterior
+ 1.0             2     0.21444
+ 1.5             0     0.00000
+ 2.0             3     0.03945
+ 2.5             9     0.04844
+ 3.0            12     0.03103
+ 3.5            27     0.05853
+ 4.0            24     0.08042
+ 4.5             7     0.07806
+ 5.0             5     0.44964
+ Number of training cases misclassified = 84
+ Predicted class is 5.0
+ ----------------------------
+  
+ ******************************************************
+ Variables used for splitting:
+ DogsAllowed
+ DriveThru
+ RestaurantsGoodForGroups
+ WheelchairAccessible
+ casual
+ lot
+ 
+ Number of terminal nodes: 7
+ 
+  Predictor variables sorted by importance scores
+  Importance Scores
+ Scaled       Unscaled         Rank  Variable
+  100.0    3.07020E+01         1.00  casual
+   91.1    2.79685E+01         2.00  dinner
+   83.9    2.57542E+01         3.00  lunch
+   80.5    2.47174E+01         4.00  NoiseLevel
+   78.4    2.40797E+01         5.00  brunch
+   76.0    2.33320E+01         6.00  latenight
+   75.4    2.31446E+01         7.00  breakfast
+   73.1    2.24516E+01         8.00  trendy
+   72.9    2.23892E+01         9.00  intimate
+   71.8    2.20581E+01        10.00  RestaurantsGoodForGroups
+   70.3    2.15734E+01        11.00  Alcohol
+   70.2    2.15582E+01        12.00  WheelchairAccessible
+   68.0    2.08824E+01        13.00  hipster
+   67.8    2.08033E+01        14.00  dessert
+   65.6    2.01449E+01        15.00  OutdoorSeating
+   64.3    1.97332E+01        16.00  classy
+   63.9    1.96067E+01        17.00  BikeParking
+   63.8    1.95752E+01        18.00  romantic
+   63.1    1.93625E+01        19.00  WiFi
+   62.7    1.92523E+01        20.00  RestaurantsAttire
+   61.7    1.89350E+01        21.00  DogsAllowed
+   61.5    1.88718E+01        22.00  RestaurantsReservations
+   60.9    1.86951E+01        23.00  upscale
+   60.6    1.85934E+01        24.00  touristy
+   55.0    1.68752E+01        25.00  HasTV
+   53.7    1.64838E+01        26.00  RestaurantsTableService
+   52.9    1.62284E+01        27.00  GoodForKids
+   52.4    1.60828E+01        28.00  RestaurantsPriceRange2
+   52.1    1.60059E+01        29.00  lot
+   50.5    1.55137E+01        30.00  validated
+   48.8    1.49684E+01        31.00  Caters
+   48.3    1.48320E+01        32.00  valet
+   47.8    1.46699E+01        33.00  BusinessAcceptsBitcoin
+   47.8    1.46678E+01        34.00  garage
+   45.1    1.38589E+01        35.00  street
+   45.0    1.38259E+01        36.00  RestaurantsDelivery
+   43.3    1.32973E+01        37.00  RestaurantsTakeOut
+   39.1    1.19919E+01        38.00  divey
+   36.3    1.11440E+01        39.00  DriveThru
+    8.2    2.52736E+00        40.00  BusinessAcceptsCreditCards
+    4.1    1.25946E+00        41.00  CoatCheck
+ ----------------- cut-off -------------------
+    2.5    7.78368E-01        42.00  HappyHour
+    2.2    6.71736E-01        43.00  sunday
+    2.1    6.56519E-01        44.00  tuesday
+    2.0    6.28932E-01        45.00  monday
+    1.9    5.68186E-01        46.00  Smoking
+    1.6    4.86221E-01        47.00  friday
+    1.5    4.52543E-01        48.00  saturday
+    1.3    3.98395E-01        49.00  GoodForDancing
+    1.2    3.57369E-01        50.00  dj
+    1.1    3.27711E-01        51.00  live
+    1.0    3.18668E-01        52.00  thursday
+    1.0    3.06553E-01        54.00  vegetarian
+    1.0    3.06553E-01        54.00  ByAppointmentOnly
+    1.0    3.06553E-01        54.00  gluten.free
+    0.6    1.72197E-01        56.00  background_music
+    0.5    1.42940E-01        57.00  wednesday
+    0.3    7.92037E-02        58.00  karaoke
+    0.0    0.00000E+00        59.00  Corkage
+    0.0    0.00000E+00        60.00  BYOBCorkage
+ Variables with unscaled scores above 1 are important
+ 
+ Number of important and unimportant split variables: 41, 19
+ Importance scores are stored in importance.txt
+ Elapsed time in seconds: 48.140
