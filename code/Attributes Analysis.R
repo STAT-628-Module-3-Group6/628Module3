@@ -1,4 +1,4 @@
-setwd("/Users/hewishwang/Desktop/stat_479_tree/628useGuide")
+#setwd("/Users/hewishwang/Desktop/stat_479_tree/628useGuide")
 dat=read.csv("attributes.csv",header = T)
 
 var=c('RestaurantsAttire','RestaurantsGoodForGroups','DriveThru','OutdoorSeating',
@@ -43,7 +43,7 @@ write.table(cbind(1:k,names(dat),roles),file="desc_atr.txt",
 # Importance score
 scr.data <- read.table("importance scores.txt",header=TRUE)
 scr.data=scr.data[1:10,]
-par(mar=c(5,10,2,1),las=1,cex.axis=0.7)
+par(mar=c(5,8.5,2,1),las=1,cex.axis=0.7)
 barplot(scr.data$Score,names.arg=scr.data$Variable,col="cyan",
         horiz=TRUE,xlab="Importance scores")
 abline(v=1,col="red",lty=2)
@@ -56,7 +56,7 @@ mCasual=aov(stars~casual,data=lmDat)
 summary(mCasual)
 outCasual=LSD.test(mCasual,"casual",p.adj="bonferroni" )
 outCasual$group
-plot(outCasual,ylim =c(3,4))
+plot(outCasual,ylim =c(3,4),xlab="casual")
 
 
 mDinner=aov(stars~dinner,data=lmDat)
@@ -69,13 +69,13 @@ mLunch=aov(stars~lunch,data=lmDat)
 summary(mLunch)
 outLunch=LSD.test(mLunch,"lunch",p.adj="bonferroni" )
 outLunch$group
-plot(outLunch,ylim =c(3,4))
+plot(outLunch,ylim =c(3,4),xlab="lunch")
 
 mNoise=aov(stars~NoiseLevel,data=lmDat)
 summary(mNoise)
 outNoise=LSD.test(mNoise,"NoiseLevel",p.adj="bonferroni" )
 outNoise$group
-plot(outNoise,ylim = c(2.9,3.6))
+plot(outNoise,ylim = c(2.9,3.6),xlab="NoiseLevel")
 
 mBrunch=aov(stars~brunch,data=lmDat)
 summary(mBrunch)
@@ -111,7 +111,13 @@ mGroup=aov(stars~RestaurantsGoodForGroups,data=lmDat)
 summary(mGroup)
 outGroup=LSD.test(mGroup,"RestaurantsGoodForGroups",p.adj="bonferroni" )
 outGroup$group
-plot(outGroup)
+plot(outGroup,ylim = c(3,4),xlab="RestaurantsGoodForGroups")
+
+
+# Take examples for slides
+par(mfrow=c(1,2),mar=c(4,2,4,0.1))
+plot(outCasual,ylim =c(3,4),xlab="casual")
+plot(outNoise,ylim = c(2.9,3.6),xlab="NoiseLevel")
 
 
 # Recommendation system about attributes
@@ -126,3 +132,10 @@ plot(outGroup)
 # If RestaurantsGoodForGroups is NA, "You should tell whether your restaurant is good for groups or not."
 # If RestaurantsGoodForGroups is False, "You should provide big tables for groups customers."
 # "You can determine whether the advice makes sense or not, since these are suggestions formed from data."
+
+
+# Recommendation system about reviews
+
+# “Your $high_food is fond of customers, so you should keep the flavor. ”
+# “Your $low_food more or less has a bad effect on your Yelp rating, so you should improve its recipe or remove $low_food from your menu.”
+# If service is 0, “Your service lowers your Yelp rating, so you should improve your waiters’ service level.”
