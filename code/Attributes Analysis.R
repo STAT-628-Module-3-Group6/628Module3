@@ -1,3 +1,5 @@
+# Continue from the attributes.ipynb
+
 #setwd("/Users/hewishwang/Desktop/stat_479_tree/628useGuide")
 dat=read.csv("attributes.csv",header = T)
 
