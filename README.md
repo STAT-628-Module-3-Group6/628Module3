@@ -12,6 +12,8 @@ The summary folder contains an executive Jupyter Notebook summary.
 
 The shiny folder includes the link and code of our shiny app.
 
+The slides folder contains slides for part 1 and slides for part 2.
+
 # Members
 
 * He Wang (hwang789@wisc.edu)
