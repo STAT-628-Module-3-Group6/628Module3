@@ -4,7 +4,7 @@ This repository contains a data folder, code folder, plot&output folder and summ
 
 The data folder includes the link to our raw data and cleaned data by R and python. In addition, it also contains a GUIDE description file.
 
-The code folder contains R and python code for the data cleaning, exploratory data analysis, attributes analysis and reviews analysis. In addition, the code for our shiny app is also here.
+The code folder contains R and python code for the data cleaning, exploratory data analysis, attributes analysis and reviews analysis. In addition, the code for our shiny app is also here. The link to our shiny app is https://qintaoying.shinyapps.io/rshiny/
 
 The plot&output folder includes the plots from our analysis, importance score and output of GUIDE.
 
